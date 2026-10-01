@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация - RentHub</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a href="index.html" class="logo">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span>RentHub</span>
+                    </a>
+                </div>
+
+                <ul class="navbar-menu" id="navbarMenu">
+                    <li><a href="index.html" class="nav-link">Главная</a></li>
+                    <li><a href="catalog.html" class="nav-link">Каталог</a></li>
+                </ul>
+
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Registration Form -->
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>Регистрация</h1>
+                <p>Создайте новый аккаунт RentHub</p>
+            </div>
+
+            <form id="registerForm" class="auth-form">
+                <div class="form-group">
+                    <label for="name">Имя</label>
+                    <input 
+                        type="text" 
+                        id="name" 
+                        name="name" 
+                        placeholder="Введите ваше имя"
+                        required
+                    >
+                    <span class="error-message" id="nameError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="Введите ваш email"
+                        required
+                    >
+                    <span class="error-message" id="emailError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Телефон</label>
+                    <input 
+                        type="tel" 
+                        id="phone" 
+                        name="phone" 
+                        placeholder="+7 (999) 999-99-99"
+                    >
+                    <span class="error-message" id="phoneError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Пароль</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="Минимум 6 символов"
+                        required
+                    >
+                    <span class="error-message" id="passwordError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Подтвердите пароль</label>
+                    <input 
+                        type="password" 
+                        id="confirmPassword" 
+                        name="confirmPassword" 
+                        placeholder="Повторите пароль"
+                        required
+                    >
+                    <span class="error-message" id="confirmPasswordError"></span>
+                </div>
+
+                <div class="form-agreement">
+                    <label>
+                        <input type="checkbox" name="agree" required>
+                        <span>Я согласен с <a href="#">условиями использования</a> и <a href="#">политикой конфиденциальности</a></span>
+                    </label>
+                    <span class="error-message" id="agreeError"></span>
+                </div>
+
+                <span class="error-message" id="formError"></span>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;" id="registerSubmitBtn">
+                    Создать аккаунт
+                </button>
+            </form>
+
+            <div class="auth-divider">или</div>
+
+            <div class="social-auth">
+                <button type="button" class="btn btn-social">
+                    <i class="fab fa-google"></i> Google
+                </button>
+                <button type="button" class="btn btn-social">
+                    <i class="fab fa-facebook"></i> Facebook
+                </button>
+            </div>
+
+            <div class="auth-footer">
+                <p>Уже есть аккаунт? <a href="login.html">Войдите</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>О RentHub</h3>
+                    <p>Платформа для аренды вещей с удобным интерфейсом и надёжными партнёрами.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Навигация</h3>
+                    <ul>
+                        <li><a href="catalog.html">Каталог</a></li>
+                        <li><a href="create-product.html">Сдать в аренду</a></li>
+                        <li><a href="#">О сервисе</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Помощь</h3>
+                    <ul>
+                        <li><a href="#">Служба поддержки</a></li>
+                        <li><a href="#">Политика конфиденциальности</a></li>
+                        <li><a href="#">Условия использования</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 RentHub. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/validation.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const agree = document.querySelector('input[name="agree"]').checked;
+
+            document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+
+            let isValid = true;
+
+            if (!name) {
+                document.getElementById('nameError').textContent = 'Имя обязательно';
+                isValid = false;
+            }
+
+            if (!isValidEmail(email)) {
+                document.getElementById('emailError').textContent = 'Пожалуйста, введите корректный email';
+                isValid = false;
+            }
+
+            if (phone && !isValidPhone(phone)) {
+                document.getElementById('phoneError').textContent = 'Пожалуйста, введите корректный номер';
+                isValid = false;
+            }
+
+            if (!isValidPassword(password)) {
+                document.getElementById('passwordError').textContent = 'Пароль должен быть минимум 6 символов';
+                isValid = false;
+            }
+
+            if (password !== confirmPassword) {
+                document.getElementById('confirmPasswordError').textContent = 'Пароли не совпадают';
+                isValid = false;
+            }
+
+            if (!agree) {
+                document.getElementById('agreeError').textContent = 'Вы должны согласиться с условиями';
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            const submitBtn = document.getElementById('registerSubmitBtn');
+            submitBtn.disabled = true;
+
+            try {
+                await register({ name, email, phone, password });
+                window.location.href = 'index.html';
+            } catch (err) {
+                document.getElementById('formError').textContent = err.message || 'Не удалось загрузить данные с сервера.';
+            } finally {
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
